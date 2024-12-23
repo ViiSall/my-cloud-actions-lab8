@@ -1,0 +1,29 @@
+name: Node.js CI              # Name of the workflow
+on:                          # Define workflow triggers
+  push:
+    branches:
+      - main                 # Run on pushes to main branch
+  pull_request:
+    branches:
+      - main                 # Run on PRs to main branch
+
+jobs:                        # Define jobs to run
+  build:                     # Job named "build"
+    runs-on: ubuntu-latest   # Use Ubuntu as environment
+
+    steps:                   # Define sequence of tasks
+      - name: Checkout code
+        uses: actions/checkout@v3    # Get repository code
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Install Node.js
+        with:
+          node-version: '16'         # Specify version 16
+      
+      - name: Install dependencies
+        run: |                      # Install project dependencies
+          yarn install
+      
+      - name: Run tests
+        run: |                      # Run test suite
+          yarn test
