@@ -21,9 +21,7 @@ jobs:                        # Define jobs to run
           node-version: '16'         # Specify version 16
       
       - name: Install dependencies
-        run: |                      # Install project dependencies
-          yarn install
-      
+        run: npm ci # or npm install
+
       - name: Run tests
-        run: |                      # Run test suite
-          yarn test
+        run: npm ci # or npm test
